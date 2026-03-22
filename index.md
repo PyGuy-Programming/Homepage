@@ -2,7 +2,7 @@
 
 Hi! My name is Luca. I'm a student from Germany and a hobby coder. I also enjoy playing Minecraft und working with Linux.
 
-For those who are interestet in my projects, here they are:
+For those who are interested in my projects, here they are:
 
 | Project     | Description |
 | ----------- | ----------- |
