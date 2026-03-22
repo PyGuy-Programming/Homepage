@@ -1,3 +1,3 @@
 # **Comming soon!**
 Hint:
-👾 🎮 🐍
+🐍 👾 🎮 
