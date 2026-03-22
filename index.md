@@ -1,7 +1,7 @@
 <h1><img src="images/pfp.png" alt=" " width="50"> <ins>PyGuy-Programming<ins></h1>   
 
-# ![](images/pfp.png) <ins>PyGuy-Programming<ins>
-&nbsp;&nbsp;&nbsp;&nbsp;Hi! My name is Luca. I'm a student from Germany and a hobby coder. I also enjoy playing Minecraft und working with Linux.
+
+Hi! My name is Luca. I'm a student from Germany and a hobby coder. I also enjoy playing Minecraft und working with Linux.
 
 For those who are interestet in my projects, here they are:
 
