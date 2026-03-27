@@ -1,0 +1,90 @@
+body {
+  background-color: #1B1B1BFF;
+  font-family: Arial, sans-serif;
+  color: #ffffff;  /* weiße Textfarbe */
+  margin: 0;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+header {
+  background-color: rgb(50, 50, 50);
+  padding-bottom: 20px;  /* Innen: Text hat Abstand von den Rändern */
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 8px; 
+  margin-bottom: 30px;  /* Außen: Platz nach unten zu anderen Elementen */
+  margin-right: -20px
+  
+}
+
+header h1 {
+  margin: 0;
+  color: #ffffff;
+}
+
+main {
+  max-width: 1120px;
+}
+
+footer {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #555;
+  text-align: center;
+  color: #aaaaaa;
+}
+
+a {
+  color: #179f1e;  /* helles Blau für Links */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Tabellen stylen */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border-bottom: #808080FF;
+}
+
+table th {
+  background-color: rgb(40, 40, 40);
+  color: #ffffff;
+  padding: 12px;
+  text-align: left;
+  border-top: 1px solid #555;
+}
+
+table td {
+  padding: 12px;
+  border-bottom: 1px solid #808080FF;
+  color: #179f1e
+}
+
+table tr:hover {
+  background-color: rgb(45, 45, 45);
+}
+
+section {
+  border-top: 5px #179f1e;
+  border-collapse: collapse;
+  background-color: rgb(50, 50, 50);
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.py {
+  color: #179f1e;  /* Grün */
+}
+
+.guy {
+  color: #b8b5b5;  /* Weiß */
+}
