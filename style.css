@@ -9,14 +9,11 @@ body {
 
 header {
   background-color: rgb(50, 50, 50);
-  padding-bottom: 20px;  /* Innen: Text hat Abstand von den Rändern */
-  padding-top: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 10px;
   border-radius: 8px; 
   margin-bottom: 30px;  /* Außen: Platz nach unten zu anderen Elementen */
-  margin-right: -20px
-  
+  margin-right: 260px
+
 }
 
 header h1 {
@@ -92,4 +89,8 @@ section {
 
 .guy {
   color: #b8b5b5;  /* Weiß */
+}
+
+header h1 img {
+  vertical-align: center;
 }
