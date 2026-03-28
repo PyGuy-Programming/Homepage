@@ -112,7 +112,8 @@ header h1 img {
 }
 
 .download-all {
-  margin-top: 20px;
+  margin-top: 15px;
+  margin-bottom: -15px;
   padding-left: 0px;
   border-top: 1px solid #555;
   border-radius: 0px;
