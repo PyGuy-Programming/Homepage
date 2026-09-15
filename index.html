@@ -388,7 +388,7 @@
 
           let lastCommit = '';
           if (Array.isArray(commits) && commits[0]?.commit?.committer?.date) {
-            const date = new Date(commits[0].commit.commitmitter.date);
+            const date = new Date(commits[0].commit.committer.date);
             const ago = getRelativeTime(date);
             lastCommit = `<span class="stat"><i class="far fa-clock" style="color:var(--accent)"></i> ${ago}</span>`;
           }
