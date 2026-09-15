@@ -1,34 +1,13 @@
 {
   "projects": [
-    {
-      "repo": "PyGuy-Programming/RPi-CEC-automation",
-      "title": "RPi-CEC-automation"
-    },
-    {
-      "repo": "PyGuy-Programming/programm-setup-script-for-ubuntu",
-      "title": "programm-setup-script-for-ubuntu"
-    },
-    {
-      "repo": "PyGuy-Programming/sshmgr",
-      "title": "sshmgr"
-    },
-    {
-      "repo": "PyGuy-Programming/Homepage",
-      "title": "Homepage"
-    },
-    {
-      "repo": "PyGuy-Programming/dot-files",
-      "title": "My dot files"
-    },
-    {
-      "repo": "PyGuy-Programming/rust-homepage-editor",
-      "title": "rust-homepage-editor"
-    }
+    { "repo": "PyGuy-Programming/RPi-CEC-automation", "title": "RPi-CEC-automation" },
+    { "repo": "PyGuy-Programming/programm-setup-script-for-ubuntu", "title": "programm-setup-script-for-ubuntu" },
+    { "repo": "PyGuy-Programming/sshmgr", "title": "sshmgr" },
+    { "repo": "PyGuy-Programming/Homepage", "title": "Homepage" },
+    { "repo": "PyGuy-Programming/dot-files", "title": "My dot files" },
+    { "repo": "PyGuy-Programming/automate-tuff-datapack", "title": "automate-tuff-datapack" }
   ],
   "pages": [
-    {
-      "url": "https://pyguy.is-a.dev/flashcards/",
-      "title": "Flashcards"
-    }
+    { "url": "https://pyguy.is-a.dev/flashcards/", "title": "Flashcards" }
   ]
 }
