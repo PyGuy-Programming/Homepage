@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0D1117">
   <meta name="mobile-web-app-capable" content="yes">
-  <title>PyGuy-Programming · link in bio</title>
+  <title>PyGuy-Programming</title>
 
   <link rel="icon" href="assets/images/profile.png" type="image/png">
 
@@ -15,16 +15,16 @@
   <link rel="stylesheet" href="assets/css/iconsbio.css">
 
   <meta property="og:url" content="https://pyguy.is-a.dev/">
-  <meta name="description" content="PyGuy-Programming · link in bio - Profile and social media links for PyGuy-Programming">
+  <meta name="description" content="PyGuy-Programming - Student, Python & Bash developer, Linux enthusiast">
   <meta property="og:site_name" content="PyGuy-Programming">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="PyGuy-Programming · link in bio">
-  <meta property="og:description" content="PyGuy-Programming · link in bio - Profile and social media links for PyGuy-Programming">
-  <meta property="og:image" content="assets/images/profile.png">
+  <meta property="og:title" content="PyGuy-Programming">
+  <meta property="og:description" content="Student, Python & Bash developer, Linux enthusiast">
+  <meta property="og:image" content="https://pyguy.is-a.dev/assets/images/profile.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PyGuy-Programming · link in bio">
-  <meta name="twitter:description" content="PyGuy-Programming · link in bio - Profile and social media links for PyGuy-Programming">
-  <meta name="twitter:image" content="assets/images/profile.png">
+  <meta name="twitter:title" content="PyGuy-Programming">
+  <meta name="twitter:description" content="Student, Python & Bash developer, Linux enthusiast">
+  <meta name="twitter:image" content="https://pyguy.is-a.dev/assets/images/profile.png">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N2VNE35MLW"></script>
   <script>
@@ -156,6 +156,27 @@
       width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0;
       border: 2px solid var(--border);
     }
+
+    /* Collapsible widget section */
+    .fold-header {
+      cursor: pointer; user-select: none;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .fold-header .chevron {
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+    .fold-header.open .chevron {
+      transform: rotate(180deg);
+    }
+    .fold-content {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+      opacity: 0;
+    }
+    .fold-content.open {
+      max-height: 600px; opacity: 1;
+    }
   </style>
 </head>
 <body class="min-h-screen flex items-start justify-center px-4 py-12 sm:py-20">
@@ -266,6 +287,19 @@
         onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
         <span class="font-bold uppercase text-sm" style="color: var(--accent);">Flashcards</span>
       </a>
+    </section>
+
+    <!-- Stats Widgets -->
+    <section class="w-full flex flex-col gap-3">
+      <div class="fold-header" id="statsToggle" onclick="document.getElementById('statsToggle').classList.toggle('open'); document.getElementById('statsContent').classList.toggle('open');">
+        <span class="text-sm font-bold uppercase tracking-widest" style="color: var(--accent);">Stats</span>
+        <span class="chevron" style="color: var(--accent);">&#9660;</span>
+      </div>
+      <div class="fold-content" id="statsContent">
+        <div class="flex flex-col items-center gap-4 pt-2">
+          <a href="https://git.io/streak-stats"><img src="https://streak-stats.demolab.com?user=pyguy-programming&theme=gruvbox&border_radius=12&date_format=j%20M%5B%20Y%5D" alt="GitHub Streak" /></a>
+        </div>
+      </div>
     </section>
 
   </main>
