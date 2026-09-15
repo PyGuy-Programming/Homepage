@@ -1,1 +1,72 @@
-{}
+{
+  "PyGuy-Programming/RPi-CEC-automation": {
+    "stars": 1,
+    "forks": 0,
+    "language": "Python",
+    "description": "This is a repository for my CEC-automation script for RPis written in Python",
+    "totalCommits": 34,
+    "lastCommitDate": "2026-09-13T22:28:46Z",
+    "languages": {
+      "Python": 5721
+    }
+  },
+  "PyGuy-Programming/programm-setup-script-for-ubuntu": {
+    "stars": 0,
+    "forks": 0,
+    "language": "Shell",
+    "description": null,
+    "totalCommits": 8,
+    "lastCommitDate": "2026-05-14T12:53:41Z",
+    "languages": {
+      "Shell": 3473
+    }
+  },
+  "PyGuy-Programming/sshmgr": {
+    "stars": 2,
+    "forks": 0,
+    "language": "Shell",
+    "description": "A bash based ssh host manager for managing ssh connections",
+    "totalCommits": 17,
+    "lastCommitDate": "2026-08-31T20:12:29Z",
+    "languages": {
+      "Shell": 4398
+    }
+  },
+  "PyGuy-Programming/Homepage": {
+    "stars": 0,
+    "forks": 0,
+    "language": "HTML",
+    "description": "A homepage for/about myself.",
+    "totalCommits": 58,
+    "lastCommitDate": "2026-09-15T21:38:59Z",
+    "languages": {
+      "HTML": 340151,
+      "CSS": 223385,
+      "JavaScript": 117922,
+      "Python": 5217
+    }
+  },
+  "PyGuy-Programming/dot-files": {
+    "stars": 0,
+    "forks": 0,
+    "language": "CSS",
+    "description": null,
+    "totalCommits": 3,
+    "lastCommitDate": "2026-09-06T18:48:04Z",
+    "languages": {
+      "CSS": 13580,
+      "Lua": 11123,
+      "Shell": 10078,
+      "Python": 214
+    }
+  },
+  "PyGuy-Programming/automate-tuff-datapack": {
+    "stars": 0,
+    "forks": 0,
+    "language": null,
+    "description": "a simple datapack for create fly for automating tuff.",
+    "totalCommits": 3,
+    "lastCommitDate": "2026-08-17T15:27:51Z",
+    "languages": {}
+  }
+}
