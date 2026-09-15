@@ -334,6 +334,8 @@
     setTheme(savedTheme);
 
     // Repo stats tooltip
+    let repoData = null;
+
     function getRelativeTime(date) {
       const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
       const intervals = [
@@ -363,7 +365,8 @@
       NASL: '#a32e29', NetLogo: '#ff6347', QML: '#44a51c', Vue: '#41b883',
       Svelte: '#ff3e00', Astro: '#ff5a03', MDX: '#fcb32c',
     };
-    const cache = {};
+
+    fetch('repo-data.json').then(r => r.json()).then(d => { repoData = d; }).catch(() => {});
 
     document.querySelectorAll('.repo-link').forEach(card => {
       const tooltip = document.createElement('div');
@@ -371,54 +374,36 @@
       tooltip.innerHTML = '<span style="opacity:0.5">Loading...</span>';
       card.appendChild(tooltip);
 
-      card.addEventListener('mouseenter', async () => {
+      card.addEventListener('mouseenter', () => {
         const repo = card.dataset.repo;
-        if (cache[repo]) { tooltip.innerHTML = cache[repo]; return; }
-        try {
-          const [repoRes, commitsRes, langRes] = await Promise.all([
-            fetch(`https://api.github.com/repos/${repo}`),
-            fetch(`https://api.github.com/repos/${repo}/commits?per_page=1`),
-            fetch(`https://api.github.com/repos/${repo}/languages`),
-          ]);
-          if (!repoRes.ok) throw new Error();
-          const d = await repoRes.json();
-          const commits = await commitsRes.json();
-          const langData = await langRes.json();
-          const desc = d.description ? `<div class="mt-1 opacity-60" style="max-width:220px;white-space:normal;">${d.description}</div>` : '';
+        if (!repoData) { tooltip.innerHTML = '<span style="opacity:0.5">Loading...</span>'; return; }
+        const d = repoData[repo];
+        if (!d || d.error) { tooltip.innerHTML = '<span style="opacity:0.5">Stats unavailable</span>'; return; }
 
-          let lastCommit = '';
-          if (Array.isArray(commits) && commits[0]?.commit?.committer?.date) {
-            const date = new Date(commits[0].commit.committer.date);
-            const ago = getRelativeTime(date);
-            lastCommit = `<span class="stat"><i class="far fa-clock" style="color:var(--accent)"></i> ${ago}</span>`;
-          }
-
-          const totalCommits = d.default_branch
-            ? await fetch(`https://api.github.com/repos/${repo}/commits?per_page=1&sha=${d.default_branch}`)
-              .then(r => { const m = r.headers.get('link')?.match(/page=(\d+)>; rel="last"/); return m ? parseInt(m[1]) : commits.length; })
-              .catch(() => commits.length)
-            : commits.length;
-
-          const langEntries = Object.entries(langData);
-          const langHtml = langEntries.map(([name, bytes]) => {
-            const color = langColors[name] || '#888';
-            return `<span class="stat"><span class="lang-dot" style="background:${color}"></span> ${name}</span>`;
-          }).join('');
-
-          tooltip.innerHTML = `
-            <div class="flex items-center gap-3 flex-wrap">
-              <span class="stat"><i class="far fa-star" style="color:var(--accent)"></i> ${d.stargazers_count}</span>
-              <span class="stat"><i class="fas fa-code-fork" style="color:var(--accent)"></i> ${d.forks_count}</span>
-              <span class="stat"><i class="far fa-copy" style="color:var(--accent)"></i> ${totalCommits}</span>
-              ${lastCommit}
-            </div>
-            ${langEntries.length > 0 ? `<div class="flex items-center gap-2 flex-wrap mt-1">${langHtml}</div>` : ''}
-            ${desc}
-          `;
-          cache[repo] = tooltip.innerHTML;
-        } catch {
-          tooltip.innerHTML = '<span style="opacity:0.5">Stats unavailable</span>';
+        let lastCommit = '';
+        if (d.lastCommitDate) {
+          const date = new Date(d.lastCommitDate);
+          lastCommit = `<span class="stat"><i class="far fa-clock" style="color:var(--accent)"></i> ${getRelativeTime(date)}</span>`;
         }
+
+        const langEntries = Object.entries(d.languages || {});
+        const langHtml = langEntries.map(([name]) => {
+          const color = langColors[name] || '#888';
+          return `<span class="stat"><span class="lang-dot" style="background:${color}"></span> ${name}</span>`;
+        }).join('');
+
+        const desc = d.description ? `<div class="mt-1 opacity-60" style="max-width:220px;white-space:normal;">${d.description}</div>` : '';
+
+        tooltip.innerHTML = `
+          <div class="flex items-center gap-3 flex-wrap">
+            <span class="stat"><i class="far fa-star" style="color:var(--accent)"></i> ${d.stars}</span>
+            <span class="stat"><i class="fas fa-code-fork" style="color:var(--accent)"></i> ${d.forks}</span>
+            <span class="stat"><i class="far fa-copy" style="color:var(--accent)"></i> ${d.totalCommits}</span>
+            ${lastCommit}
+          </div>
+          ${langEntries.length > 0 ? `<div class="flex items-center gap-2 flex-wrap mt-1">${langHtml}</div>` : ''}
+          ${desc}
+        `;
       });
     });
   </script>

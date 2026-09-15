@@ -1,0 +1,32 @@
+name: Update Repo Data
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"  # every 6 hours
+  workflow_dispatch:  # manual trigger
+  push:
+    paths:
+      - "projects.json"
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Fetch repo data
+        run: node scripts/fetch-repos.mjs
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add repo-data.json
+          git diff --staged --quiet || git commit -m "chore: update repo data"
+          git push
