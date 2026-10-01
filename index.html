@@ -177,6 +177,45 @@
     .fold-content.open {
       max-height: 600px; opacity: 1;
     }
+
+    /* Profile picture glow */
+    .profile-glow {
+      position: relative;
+    }
+    .profile-glow::before {
+      content: '';
+      position: absolute; inset: -3px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--accent), var(--accent2), var(--accent));
+      opacity: 0.4;
+      animation: glow-spin 4s linear infinite;
+      z-index: -1;
+    }
+    @keyframes glow-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Card border glow on hover */
+    .glow-card {
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glow-card:hover {
+      border-color: var(--accent) !important;
+      box-shadow: 0 0 15px color-mix(in srgb, var(--accent) 25%, transparent),
+                  0 0 30px color-mix(in srgb, var(--accent) 10%, transparent);
+    }
+
+    /* Typing cursor */
+    .bio-cursor::after {
+      content: '|';
+      animation: blink 1s step-end infinite;
+      color: var(--accent);
+      font-weight: bold;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
   </style>
 </head>
 <body class="min-h-screen flex items-start justify-center px-4 py-12 sm:py-20">
@@ -219,9 +258,11 @@
 
     <!-- Profile -->
     <section class="flex flex-col items-center gap-3">
-      <img src="assets/images/profile.png" alt="PyGuy-Programming profile picture"
-        class="w-28 h-28 rounded-full object-cover"
-        style="border: 2px solid var(--border);">
+      <div class="profile-glow rounded-full">
+        <img src="assets/images/profile.png" alt="PyGuy-Programming profile picture"
+          class="w-28 h-28 rounded-full object-cover relative"
+          style="border: 2px solid var(--border);">
+      </div>
       <h1 class="text-2xl font-bold tracking-tight" style="color: var(--accent);">PyGuy-Programming</h1>
       <div class="flex gap-4 text-lg">
         <a href="https://github.com/PyGuy-Programming" rel="external nofollow noopener" class="pop-icon" style="color: var(--accent);" title="GitHub">
@@ -238,7 +279,7 @@
 
     <!-- Bio -->
     <section class="text-center leading-relaxed max-w-md" style="color: var(--accent2);">
-      <p>Hiya! I'm PyGuy, a few also know me as GravyCat. I'm a student from Germany and like programming in <strong class="font-bold" style="color: var(--accent);">Python</strong> and <strong class="font-bold" style="color: var(--accent);">Bash</strong>. I also enjoy playing Minecraft and tinkering with Linux as it's my daily used OS.</p>
+      <p class="bio-cursor">Hiya! I'm PyGuy, a few also know me as GravyCat. I'm a student from Germany and like programming in <strong class="font-bold" style="color: var(--accent);">Python</strong> and <strong class="font-bold" style="color: var(--accent);">Bash</strong>. I also enjoy playing Minecraft and tinkering with Linux as it's my daily used OS.</p>
     </section>
 
     <!-- Projects -->
@@ -247,31 +288,31 @@
       <div class="flex flex-col gap-2">
         <a href="https://github.com/PyGuy-Programming/RPi-CEC-automation" rel="external nofollow noopener"
           data-repo="PyGuy-Programming/RPi-CEC-automation"
-          class="pop-card group block rounded-lg p-3 text-center repo-link"
+          class="pop-card group block rounded-lg p-3 text-center repo-link glow-card"
           style="background: var(--surface); border: 1px solid var(--border);">
           <span class="font-bold uppercase text-sm" style="color: var(--accent);">RPi-CEC-automation</span>
         </a>
         <a href="https://github.com/PyGuy-Programming/programm-setup-script-for-ubuntu" rel="external nofollow noopener"
           data-repo="PyGuy-Programming/programm-setup-script-for-ubuntu"
-          class="pop-card group block rounded-lg p-3 text-center repo-link"
+          class="pop-card group block rounded-lg p-3 text-center repo-link glow-card"
           style="background: var(--surface); border: 1px solid var(--border);">
           <span class="font-bold uppercase text-sm" style="color: var(--accent);">programm-setup-script-for-ubuntu</span>
         </a>
         <a href="https://github.com/PyGuy-Programming/sshmgr" rel="external nofollow noopener"
           data-repo="PyGuy-Programming/sshmgr"
-          class="pop-card group block rounded-lg p-3 text-center repo-link"
+          class="pop-card group block rounded-lg p-3 text-center repo-link glow-card"
           style="background: var(--surface); border: 1px solid var(--border);">
           <span class="font-bold uppercase text-sm" style="color: var(--accent);">sshmgr</span>
         </a>
         <a href="https://github.com/PyGuy-Programming/Homepage" rel="external nofollow noopener"
           data-repo="PyGuy-Programming/Homepage"
-          class="pop-card group block rounded-lg p-3 text-center repo-link"
+          class="pop-card group block rounded-lg p-3 text-center repo-link glow-card"
           style="background: var(--surface); border: 1px solid var(--border);">
           <span class="font-bold uppercase text-sm" style="color: var(--accent);">Homepage</span>
         </a>
         <a href="https://github.com/PyGuy-Programming/dot-files" rel="external nofollow noopener"
           data-repo="PyGuy-Programming/dot-files"
-          class="pop-card group block rounded-lg p-3 text-center repo-link"
+          class="pop-card group block rounded-lg p-3 text-center repo-link glow-card"
           style="background: var(--surface); border: 1px solid var(--border);">
           <span class="font-bold uppercase text-sm" style="color: var(--accent);">My dot files</span>
         </a>
@@ -282,9 +323,8 @@
     <section class="w-full flex flex-col gap-3">
       <h2 class="text-sm font-bold uppercase tracking-widest text-center" style="color: var(--accent);">Other Pages</h2>
       <a href="https://pyguy.is-a.dev/flashcards/" rel="external nofollow noopener"
-        class="pop-card group block rounded-lg p-3 text-center"
-        style="background: var(--surface); border: 1px solid var(--border);"
-        onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+        class="pop-card group block rounded-lg p-3 text-center glow-card"
+        style="background: var(--surface); border: 1px solid var(--border);">
         <span class="font-bold uppercase text-sm" style="color: var(--accent);">Flashcards</span>
       </a>
     </section>
