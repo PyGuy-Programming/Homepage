@@ -1,0 +1,44 @@
+<!doctype html>
+<html class="offline" dir="ltr" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chrome Dinosaur Game</title>
+<link rel="apple-touch-icon" sizes="76x76" href="../assets/p/dinosaur-game/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/p/dinosaur-game/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/p/dinosaur-game/favicon-16x16.png">
+<link rel="manifest" href="../assets/p/dinosaur-game/site.webmanifest">
+<link rel="stylesheet" href="../assets/p/s.CMRlIXzc.css">
+<link rel="stylesheet" href="../assets/p/s.WCdx8v8H.css">
+<link rel="stylesheet" href="../assets/p/game-controls.css">
+</head>
+<body id="t" class="neterror viewport-popup">
+<div class="stage">
+<div class="viewport viewport-initialized prepare-transition visible">
+<div id="main-frame-error" class="interstitial-wrapper">
+<div id="main-content"><div class="icon icon-offline" style="visibility:hidden"></div></div>
+<div class="options"><label for="botStatus" class="bot-control-hidden" title="Enable AI/Bot Mode for automatic jumping and ducking."><input type="checkbox" id="botStatus"><span class="bot-ask">AI/Bot Mode</span></label></div>
+</div>
+<div id="offline-resources"><img id="offline-resources-1x" data-dino-src="../assets/p/dinosaur-game/img/default_100_percent/offline/100-offline-sprite.png"><img id="offline-resources-2x" data-dino-src="../assets/p/dinosaur-game/img/default_200_percent/offline/200-offline-sprite.png"><div id="audio-resources"><audio id="offline-sound-press" data-dino-src="../assets/p/dinosaur-game/sounds/press.mp3" preload="none"></audio><audio id="offline-sound-hit" data-dino-src="../assets/p/dinosaur-game/sounds/hit.mp3" preload="none"></audio><audio id="offline-sound-reached" data-dino-src="../assets/p/dinosaur-game/sounds/reached.mp3" preload="none"></audio></div></div>
+<div class="game-info"><p class="game-des">Press <kbd>Space</kbd>, <kbd>&uarr;</kbd>, or <kbd>&darr;</kbd> to dodge obstacles. On a phone, just tap to play.</p></div>
+<div class="g-controls">
+<button type="button" class="pad-btn" data-pad-toggle data-connected="false" aria-label="Controller status" title="Connect a controller, then press A / d-pad up to play">
+<svg aria-hidden="true" focusable="false"><use href="../assets/p/s.CMsbPynt.svg#play"/></svg>
+<span data-pad-label>No controller</span>
+</button>
+<span class="g-controls-label">Controller: A / d-pad up to jump &middot; B / d-pad down to duck &middot; Start to restart</span>
+</div>
+<div class="hidden-texts"><span class="ai-auto-play">AI auto-play:</span><span class="current-page">You are here</span></div>
+<script>!function(){var currTrexGame="classic";window.currTrexGame=currTrexGame}()</script>
+<script>!function(){const e={spriteGroups:{base:[{id:"offline-resources-1x",src:"../assets/p/dinosaur-game/img/default_100_percent/offline/100-offline-sprite.png"},{id:"offline-resources-2x",src:"../assets/p/dinosaur-game/img/default_200_percent/offline/200-offline-sprite.png"}],birthday:[],alt:[]},audio:[{id:"offline-sound-press",src:"../assets/p/dinosaur-game/sounds/press.mp3"},{id:"offline-sound-hit",src:"../assets/p/dinosaur-game/sounds/hit.mp3"},{id:"offline-sound-reached",src:"../assets/p/dinosaur-game/sounds/reached.mp3"}],classicToggle:{states:[{iconSrc:"../assets/p/dinosaur-game/img/santa.svg",alt:"Santa Runner",spriteByScale:{"1x":"../assets/p/dinosaur-game/img/default_100_percent/offline/100-offline-sprite.png","2x":"../assets/p/dinosaur-game/img/default_200_percent/offline/200-offline-sprite.png"}},{iconSrc:"../assets/p/dinosaur-game/img/dino.svg",alt:"Chrome Dino",spriteByScale:{"1x":"../assets/p/dinosaur-game/img/default_100_percent/offline/100-santa-sprite.png","2x":"../assets/p/dinosaur-game/img/default_200_percent/offline/200-santa-sprite.png"}}],warmupImages:["../assets/p/dinosaur-game/img/dino.svg"],warmupSpriteByScale:{"1x":"../assets/p/dinosaur-game/img/default_100_percent/offline/100-santa-sprite.png","2x":"../assets/p/dinosaur-game/img/default_200_percent/offline/200-santa-sprite.png"}}},s={states:[{iconSrc:"../assets/p/dinosaur-game/img/santa.svg",alt:"Santa Runner",spriteByScale:{"1x":"../assets/p/dinosaur-game/img/default_100_percent/offline/100-offline-sprite.png","2x":"../assets/p/dinosaur-game/img/default_200_percent/offline/200-offline-sprite.png"}},{iconSrc:"../assets/p/dinosaur-game/img/dino.svg",alt:"Chrome Dino",spriteByScale:{"1x":"../assets/p/dinosaur-game/img/default_100_percent/offline/100-santa-sprite.png","2x":"../assets/p/dinosaur-game/img/default_200_percent/offline/200-santa-sprite.png"}}],warmupImages:["../assets/p/dinosaur-game/img/dino.svg"],warmupSpriteByScale:{"1x":"../assets/p/dinosaur-game/img/default_100_percent/offline/100-santa-sprite.png","2x":"../assets/p/dinosaur-game/img/default_200_percent/offline/200-santa-sprite.png"}};{var a=window.__elgoogDinoResources||(window.__elgoogDinoResources={});e;var t,t=(t="object"==typeof e?e:{}).spriteGroups&&"object"==typeof t.spriteGroups?t.spriteGroups:{};const r=a.stageState||(a.stageState={});var i=e=>Array.isArray(e)?e:[];const n=i(t.base),o=i(t.birthday),p=i(t.alt),g=(s,"object"==typeof s?s:null),f=(e,s)=>{var s="string"==typeof e?{id:e,src:s}:e;return s&&"string"==typeof s.id?(e=document.getElementById(s.id),s="string"==typeof s.src&&0<s.src.trim().length?s.src.trim():e?.dataset?.dinoSrc?.trim(),e&&s&&e.getAttribute("src")!==s&&(e.setAttribute("data-dino-src",s),e.setAttribute("src",s),"function"==typeof e.load)&&e.load(),e):null},l=()=>1<window.devicePixelRatio?"2x":"1x",c=e=>{const s=l();e.forEach(e=>{"string"==typeof e?.id&&e.id.endsWith(s)&&f(e)})},u=e=>{"string"==typeof e&&0!==e.trim().length&&((new Image).src=e)},d=e=>{var s;r[e]||(r[e]=!0,"load"===e?(c(n),c(o),c(p)):"cta"===e&&g&&(e=Array.isArray(g.warmupImages)?g.warmupImages:[],s=g.warmupSpriteByScale&&"object"==typeof g.warmupSpriteByScale?g.warmupSpriteByScale:{},e.forEach(u),u(s[l()])))};a.runStage=d,a.syncResourceElement=f,a.prepareInitialResources=()=>{d("load")},a.warmClassicToggleAssets=()=>{d("cta")},a.applyClassicToggleState=e=>{var e=e&&"object"==typeof e.spriteByScale?e.spriteByScale:null;e&&(f("offline-resources-1x",e["1x"]),f("offline-resources-2x",e["2x"]),e=window.Runner?.instance_)&&"function"==typeof e.reloadImages&&(e.reloadImages("offline-resources-1x"),e.reloadImages("offline-resources-2x"))}}}()</script>
+<script src="../assets/p/dinosaur-game/js/neterror.0a3e41470337.js"></script>
+<script src="../assets/p/dinosaur-game/js/offline.42e934a09116.js"></script>
+<script src="../assets/p/dinosaur-game/js/offline-sprite-definitions.abcb4e22dee8.js"></script>
+<script src="../assets/p/dinosaur-game/js/load_time_data.5cd975dd0a2d.js"></script>
+<script>!function(){var e={dinoGameA11yGameOver:"Game over, your score is $1.",dinoGameA11yHighScore:"Your highest score is $1.",dinoGameA11yJump:"Jump!",dinoGameA11ySpeedToggle:"Start slower",dinoGameA11yStartGame:"Game started.",iconClass:"icon-offline",dinoGameA11yAriaLabel:"Chrome Dinosaur Game"};"function"==typeof window.loadTimeData?.replaceData?window.loadTimeData.replaceData(e):window.loadTimeData.data=e}()</script>
+<script src="../assets/p/dinosaur-game/js/index.0c3babea1852.js"></script>
+<script src="../assets/js/game-controls.js"></script>
+</div>
+</div>
+</body>
+</html>

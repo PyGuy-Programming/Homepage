@@ -1,0 +1,60 @@
+/* Controller status pill for the standalone dinosaur game. */
+
+.pad-btn {
+  appearance: none;
+  border: 1px solid color-mix(in srgb, var(--text-color) 25%, transparent);
+  background: color-mix(in srgb, var(--background-color) 82%, var(--text-color));
+  color: var(--text-color);
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.85rem;
+  line-height: 1;
+  padding: 0.5em 0.9em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.pad-btn:hover {
+  background: color-mix(in srgb, var(--background-color) 65%, var(--text-color));
+}
+
+.pad-btn:focus-visible {
+  outline: 2px solid var(--link-color, currentColor);
+  outline-offset: 2px;
+}
+
+.pad-btn svg {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
+
+.pad-btn[data-connected="true"] {
+  border-color: #7fc98b;
+  color: #2f7d43;
+  background: color-mix(in srgb, #d8f3dd 70%, var(--background-color));
+}
+
+.g-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0 12px 18px;
+}
+
+.g-controls-label {
+  flex-basis: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pad-btn {
+    transition: none;
+  }
+}
