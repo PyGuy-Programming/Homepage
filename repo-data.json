@@ -1,17 +1,65 @@
 {
   "PyGuy-Programming/RPi-CEC-automation": {
-    "error": "repo 403"
+    "stars": 1,
+    "forks": 0,
+    "language": "Python",
+    "description": "This is a repository for my CEC-automation script for RPis written in Python",
+    "totalCommits": 34,
+    "lastCommitDate": "2026-09-13T22:28:46Z",
+    "languages": {
+      "Python": 5721
+    }
   },
   "PyGuy-Programming/programm-setup-script-for-ubuntu": {
-    "error": "repo 403"
+    "stars": 0,
+    "forks": 0,
+    "language": "Shell",
+    "description": null,
+    "totalCommits": 8,
+    "lastCommitDate": "2026-05-14T12:53:41Z",
+    "languages": {
+      "Shell": 3473
+    }
   },
   "PyGuy-Programming/sshmgr": {
-    "error": "repo 403"
+    "stars": 2,
+    "forks": 0,
+    "language": "Shell",
+    "description": "A bash based ssh host manager for managing ssh connections",
+    "totalCommits": 28,
+    "lastCommitDate": "2026-10-04T20:00:04Z",
+    "languages": {
+      "Shell": 28955,
+      "Roff": 8275
+    }
   },
   "PyGuy-Programming/Homepage": {
-    "error": "repo 403"
+    "stars": 0,
+    "forks": 0,
+    "language": "HTML",
+    "description": "A homepage for/about myself.",
+    "totalCommits": 135,
+    "lastCommitDate": "2026-10-20T10:44:05Z",
+    "languages": {
+      "HTML": 350118,
+      "CSS": 224669,
+      "JavaScript": 120422
+    }
   },
   "PyGuy-Programming/dot-files": {
-    "error": "repo 403"
+    "stars": 0,
+    "forks": 0,
+    "language": "Shell",
+    "description": null,
+    "totalCommits": 10,
+    "lastCommitDate": "2026-09-22T20:37:50Z",
+    "languages": {
+      "Shell": 51345,
+      "TypeScript": 34405,
+      "CSS": 17390,
+      "Lua": 11826,
+      "SCSS": 9019,
+      "Python": 214
+    }
   }
 }
