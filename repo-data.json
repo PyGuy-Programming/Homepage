@@ -15,51 +15,19 @@
     "forks": 0,
     "language": "Shell",
     "description": null,
-    "totalCommits": 8,
+    "totalCommits": 1,
     "lastCommitDate": "2026-05-14T12:53:41Z",
     "languages": {
       "Shell": 3473
     }
   },
   "PyGuy-Programming/sshmgr": {
-    "stars": 2,
-    "forks": 0,
-    "language": "Shell",
-    "description": "A bash based ssh host manager for managing ssh connections",
-    "totalCommits": 28,
-    "lastCommitDate": "2026-10-04T20:00:04Z",
-    "languages": {
-      "Shell": 28955,
-      "Roff": 8275
-    }
+    "error": "repo 403"
   },
   "PyGuy-Programming/Homepage": {
-    "stars": 0,
-    "forks": 0,
-    "language": "HTML",
-    "description": "A homepage for/about myself.",
-    "totalCommits": 140,
-    "lastCommitDate": "2026-10-21T16:22:43Z",
-    "languages": {
-      "HTML": 350118,
-      "CSS": 224669,
-      "JavaScript": 120422
-    }
+    "error": "repo 403"
   },
   "PyGuy-Programming/dot-files": {
-    "stars": 0,
-    "forks": 0,
-    "language": "Shell",
-    "description": null,
-    "totalCommits": 10,
-    "lastCommitDate": "2026-09-22T20:37:50Z",
-    "languages": {
-      "Shell": 51345,
-      "TypeScript": 34405,
-      "CSS": 17390,
-      "Lua": 11826,
-      "SCSS": 9019,
-      "Python": 214
-    }
+    "error": "repo 403"
   }
 }
