@@ -10,6 +10,8 @@
   <link rel="icon" href="assets/images/profile.png" type="image/png">
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-mono@5.3.0/index.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/fontawesome.css">
   <link rel="stylesheet" href="assets/css/iconsbio.css">
@@ -68,6 +70,7 @@
     a:hover { color: inherit; }
 
     .pop-card {
+      position: relative;
       transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
       transform: perspective(600px) translateZ(0);
     }
@@ -89,12 +92,31 @@
       transform: perspective(600px) translateZ(60px) scale(1.1);
     }
 
+    /* Scroll progress bar */
+    #scrollProgress {
+      position: fixed; top: 0; left: 0; height: 3px; width: 100%;
+      background: var(--accent); transform: scaleX(0); transform-origin: 0 0;
+      z-index: 40; pointer-events: none;
+    }
+
+    /* Card spotlight that follows the cursor */
+    .pop-card::before {
+      content: "";
+      position: absolute; inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      pointer-events: none;
+    }
+    .pop-card:hover::before { opacity: 1; }
+    .pop-card .font-bold { position: relative; }
+
     /* Repo tooltip */
     .repo-tooltip {
       position: absolute; left: 50%; bottom: calc(100% + 10px);
       transform: translateX(-50%) translateY(4px);
       opacity: 0; pointer-events: none;
-      transition: opacity 0.25s ease, transform 0.25s ease;
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 8px; padding: 10px 14px;
       white-space: nowrap; z-index: 30;
@@ -126,7 +148,6 @@
       position: fixed; inset: 0; z-index: 50;
       background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
       opacity: 0; pointer-events: none;
-      transition: opacity 0.3s ease;
     }
     .menu-overlay.open { opacity: 1; pointer-events: auto; }
 
@@ -136,7 +157,6 @@
       width: 280px; height: 100%;
       background: var(--surface); border-left: 1px solid var(--border);
       transform: translateX(100%);
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
       display: flex; flex-direction: column;
     }
     .theme-menu.open { transform: translateX(0); }
@@ -182,22 +202,10 @@
     .profile-glow {
       position: relative;
     }
-    .profile-glow::before {
-      content: '';
-      position: absolute; inset: -3px;
-      border-radius: 50%;
-      background: conic-gradient(from 0deg, var(--accent), var(--accent2), var(--accent));
-      opacity: 0.4;
-      animation: glow-spin 4s linear infinite;
-      z-index: -1;
-    }
-    @keyframes glow-spin {
-      to { transform: rotate(360deg); }
-    }
 
     /* Card border glow on hover */
     .glow-card {
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .glow-card:hover {
       border-color: var(--accent) !important;
@@ -219,6 +227,8 @@
   </style>
 </head>
 <body class="min-h-screen flex items-start justify-center px-4 py-12 sm:py-20">
+
+  <div id="scrollProgress" aria-hidden="true"></div>
 
   <!-- Theme Menu -->
   <div class="menu-overlay" id="menuOverlay"></div>
@@ -342,7 +352,7 @@
       </div>
       <div class="fold-content" id="statsContent">
         <div class="flex flex-col items-center gap-4 pt-2">
-          <a href="https://git.io/streak-stats"><img src="https://streak-stats.demolab.com?user=pyguy-programming&theme=gruvbox&border_radius=12&date_format=j%20M%5B%20Y%5D" alt="GitHub Streak" /></a>
+          <a href="https://git.io/streak-stats"><img src="https://streak-stats.demolab.com?user=pyguy-programming&theme=gruvbox&border_radius=12&date_format=j%20M%5B%20Y%5D" alt="GitHub Streak" loading="lazy" /></a>
         </div>
       </div>
     </section>
@@ -380,6 +390,8 @@
       closeBtn.classList.add('active');
       menu.classList.add('open');
       overlay.classList.add('open');
+      gsap.to(overlay, { opacity: 1, duration: 0.3, ease: "power2.out" });
+      gsap.to(menu, { x: 0, duration: 0.35, ease: "expo.out" });
     }
     function closeMenu() {
       hamburger.style.display = '';
@@ -387,6 +399,8 @@
       closeBtn.classList.remove('active');
       menu.classList.remove('open');
       overlay.classList.remove('open');
+      gsap.to(overlay, { opacity: 0, duration: 0.3, ease: "power2.out" });
+      gsap.to(menu, { x: menu.offsetWidth, duration: 0.35, ease: "expo.out" });
     }
 
     hamburger.addEventListener('click', openMenu);
@@ -472,8 +486,180 @@
           ${langEntries.length > 0 ? `<div class="flex items-center gap-2 flex-wrap mt-1">${langHtml}</div>` : ''}
           ${desc}
         `;
+        gsap.fromTo(tooltip, { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.2, ease: "power2.out" });
+
+        const stats = tooltip.querySelectorAll('.stat');
+        stats.forEach((stat) => {
+          const clean = stat.textContent.replace(/[^0-9]/g, '');
+          const num = parseInt(clean, 10) || 0;
+          if (num > 0) {
+            let current = 0;
+            const step = () => {
+              current = Math.min(num, current + Math.max(1, Math.round(num / 40)));
+              stat.textContent = String(current);
+              if (current < num) setTimeout(step, 16);
+            };
+            step();
+          }
+        });
+      });
+      card.addEventListener('mouseleave', () => {
+        gsap.to(tooltip, { opacity: 0, scale: 0.92, duration: 0.2, ease: "power2.out" });
       });
     });
+  </script>
+
+  <script>
+    function initSiteAnimations() {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Scroll progress bar
+    if (!prefersReducedMotion) {
+      gsap.to("#scrollProgress", {
+        scaleX: 1,
+        ease: "none",
+        scrollTrigger: { trigger: document.documentElement, start: 0, end: "max", scrub: true },
+      });
+    }
+
+    // Split heading into words for staggered reveal
+    function splitHeadingWords(el) {
+      const raw = el.textContent.trim();
+      const parts = raw.replace(/([a-z0-9])([A-Z])/g, "$1 $2").split(/\s+/).filter(Boolean);
+      const frag = document.createDocumentFragment();
+      parts.forEach((part, i) => {
+        if (i > 0) frag.appendChild(document.createTextNode(" "));
+        const word = document.createElement("span");
+        word.textContent = part;
+        word.style.display = "inline-block";
+        frag.appendChild(word);
+      });
+      el.textContent = "";
+      el.appendChild(frag);
+      return gsap.utils.toArray(el.querySelectorAll("span"));
+    }
+
+    if (!prefersReducedMotion) {
+      const ctx = gsap.context(() => {
+        const profileImg = gsap.utils.toArray(document.querySelectorAll(".profile-glow img"))[0];
+        const title = gsap.utils.toArray(document.querySelectorAll("h1"))[0];
+        const socials = gsap.utils.toArray(document.querySelectorAll(".pop-icon"));
+          const bio = gsap.utils.toArray(document.querySelectorAll(".bio-cursor"))[0];
+          const bioWords = bio.textContent.trim().split(/\s+/);
+          bio.innerHTML = "";
+          const cards = gsap.utils.toArray(document.querySelectorAll(".pop-card"));
+
+        function startBioTypewriter() {
+          const words = bioWords;
+          let i = 0;
+          bio.innerHTML = "";
+          const tick = () => {
+            if (i < words.length) {
+              const slice = words.slice(0, i + 1);
+              bio.innerHTML = slice.map((w) => {
+                const clean = w.replace(/[^a-z]/gi, "").toLowerCase();
+                const isTarget = /^(python|bash)$/.test(clean);
+                const display = isTarget ? clean.charAt(0).toUpperCase() + clean.slice(1) : w;
+                const styled = isTarget ? `<strong>${display}</strong>${w.replace(/^[a-zA-Z]+/, "")}` : w;
+                return styled;
+              }).join(" ");
+              i += 1;
+              setTimeout(tick, 50);
+            }
+          };
+          tick();
+        }
+
+        const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
+
+        tl.from(profileImg, { scale: 0.8, opacity: 0, duration: 1.2, ease: "expo.out" });
+        const titleWords = splitHeadingWords(title);
+        tl.from(titleWords, { y: "110%", opacity: 0, duration: 0.8, stagger: 0.06, ease: "expo.out" });
+        tl.from(socials, { y: 12, opacity: 0, duration: 0.5, stagger: 0.08, ease: "expo.out" }, "-=0.5");
+        tl.from(cards, { y: 36, opacity: 0, duration: 0.8, stagger: 0.07, ease: "expo.out" }, "-=0.6");
+
+        const introElements = [profileImg, ...titleWords, ...socials, bio, ...cards];
+
+          tl.add(() => {
+            introElements.forEach((el) => {
+              if (!el) return;
+              el.style.transform = "";
+              el.style.opacity = "";
+            });
+          });
+
+          tl.add(() => startBioTypewriter());
+
+        cards.forEach((card) => {
+          card.addEventListener("mousemove", (e) => {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+            card.style.setProperty("--my", `${e.clientY - rect.top}px`);
+          });
+        });
+
+          // Magnetic social icons
+          socials.forEach((icon) => {
+            const xTo = gsap.quickTo(icon, "x", { duration: 0.3, ease: "power3.out" });
+            const yTo = gsap.quickTo(icon, "y", { duration: 0.3, ease: "power3.out" });
+            icon.addEventListener("mousemove", (e) => {
+              const r = icon.getBoundingClientRect();
+              xTo((e.clientX - (r.left + r.width / 2)) * 0.2);
+              yTo((e.clientY - (r.top + r.height / 2)) * 0.2);
+            });
+            icon.addEventListener("mouseleave", () => {
+              xTo(0);
+              yTo(0);
+            });
+          });
+
+          // Subtle scroll parallax on profile image
+          const profileSection = profileImg.closest("section");
+          if (profileSection) {
+            gsap.to(profileImg, {
+              y: -70,
+              ease: "none",
+              scrollTrigger: { trigger: profileSection, start: "top bottom", end: "bottom top", scrub: true },
+            });
+          }
+
+          // Scroll-triggered project card reveals
+          cards.forEach((card) => {
+            gsap.from(card, {
+              y: 30,
+              opacity: 0,
+              duration: 0.8,
+              ease: "expo.out",
+              scrollTrigger: { trigger: card, start: "top 92%", once: true },
+              onComplete: () => {
+                card.style.transform = "";
+                card.style.opacity = "";
+              },
+            });
+          });
+      });
+    }
+
+    if (!prefersReducedMotion) {
+      gsap.utils.toArray("main > section").forEach((section) => {
+        gsap.from(section, {
+          y: 48,
+          opacity: 0,
+          duration: 0.9,
+          ease: "expo.out",
+          scrollTrigger: { trigger: section, start: "top 88%", once: true },
+        });
+      });
+    }
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initSiteAnimations);
+    } else {
+      initSiteAnimations();
+    }
   </script>
 </body>
 </html>
