@@ -22,7 +22,7 @@
     }
   },
   "PyGuy-Programming/sshmgr": {
-    "stars": 2,
+    "stars": 3,
     "forks": 0,
     "language": "Shell",
     "description": "A bash based ssh host manager for managing ssh connections",
@@ -38,10 +38,10 @@
     "forks": 0,
     "language": "HTML",
     "description": "A homepage for/about myself.",
-    "totalCommits": 185,
-    "lastCommitDate": "2026-11-03T00:14:32Z",
+    "totalCommits": 189,
+    "lastCommitDate": "2026-11-03T21:29:35Z",
     "languages": {
-      "HTML": 350118,
+      "HTML": 357482,
       "CSS": 224669,
       "JavaScript": 120422
     }
