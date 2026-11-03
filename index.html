@@ -224,6 +224,17 @@
       50% { opacity: 0; }
     }
 
+    /* Terminal status line */
+    .term-line {
+      font-size: 13px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 100%;
+    }
+    .term-prompt { color: var(--accent); }
+    .term-output { color: var(--accent2); }
+
   </style>
 </head>
 <body class="min-h-screen flex items-start justify-center px-4 py-12 sm:py-20">
@@ -291,6 +302,12 @@
     <section class="text-center leading-relaxed max-w-md" style="color: var(--accent2);">
       <p class="bio-cursor">Hiya! I'm PyGuy, a few also know me as GravyCat. I'm a student from Germany and like programming in <strong class="font-bold" style="color: var(--accent);">Python</strong> and <strong class="font-bold" style="color: var(--accent);">Bash</strong>. I also enjoy playing Minecraft and tinkering with Linux as it's my daily used OS.</p>
     </section>
+
+    <!-- Terminal status line -->
+    <div class="term-line">
+      <span class="term-prompt">guest@pyguy:~$ whoami</span><br/>
+      <span class="term-output">gravycat</span>
+    </div>
 
     <!-- Projects -->
     <section class="w-full flex flex-col gap-3">
