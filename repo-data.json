@@ -26,7 +26,7 @@
     "forks": 0,
     "language": "Shell",
     "description": "A bash based ssh host manager for managing ssh connections",
-    "totalCommits": 31,
+    "totalCommits": 1,
     "lastCommitDate": "2026-11-08T17:41:35Z",
     "languages": {
       "Shell": 32127,
@@ -34,17 +34,7 @@
     }
   },
   "PyGuy-Programming/Homepage": {
-    "stars": 0,
-    "forks": 0,
-    "language": "HTML",
-    "description": "A homepage for/about myself.",
-    "totalCommits": 243,
-    "lastCommitDate": "2026-11-22T23:01:52Z",
-    "languages": {
-      "HTML": 357482,
-      "CSS": 224669,
-      "JavaScript": 120422
-    }
+    "error": "repo 504"
   },
   "PyGuy-Programming/dot-files": {
     "stars": 0,
